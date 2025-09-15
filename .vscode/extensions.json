@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "zeshuaro.vscode-python-poetry",
+        "be5invis.toml",
+        "charliermarsh.ruff"
+    ]
+}
