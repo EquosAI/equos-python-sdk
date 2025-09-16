@@ -7,13 +7,11 @@ description = "Equos.ai official Python SDK."
 name = "equos"
 readme = "README.md"
 requires-python = ">=3.11"
-version = "0.1.0"
+version = "1.0.0"
 
 [tool.poetry]
+include = ["src/equos/py.typed"]
 packages = [{include = "equos", from = "src"}]
-
-[tool.poetry.include]
-"equos/py.typed" = {include = true}
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
