@@ -15,7 +15,9 @@ class EquosAgentAsyncApi:
         self.async_http = async_http
 
     async def create(self, *, data: CreateEquosAgentRequest) -> EquosAgent:
-        res = await self.async_http.post("/agents", data)
+        res = await self.async_http.post(
+            "/agents", data.model_dump_json(exclude_none=True)
+        )
 
         if res is None:
             raise EquosException("Create agent response is None")

@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from typing import Optional, Union
 from datetime import datetime
 
@@ -8,14 +7,12 @@ from equos.models.agent_models import CreateEquosAgentRequest, EquosAgent
 from equos.models.avatar_models import CreateEquosAvatarRequest, EquosAvatar
 
 
-@dataclass
-class EquosParticipantIdentity:
+class EquosParticipantIdentity(BaseModel):
     identity: str
     name: str
 
 
-@dataclass
-class EquosResourceId:
+class EquosResourceId(BaseModel):
     id: str
 
 
@@ -23,20 +20,18 @@ class EquosServerUrl(BaseModel):
     serverUrl: str
 
 
-@dataclass
 class EquosSessionHost(EquosServerUrl):
     accessToken: str
 
 
-@dataclass
-class CreateEquosSessionRequest:
+class CreateEquosSessionRequest(BaseModel):
     name: str
-    client: Optional[str]
-    host: Optional[EquosSessionHost]
-    agent: Optional[Union[EquosResourceId, CreateEquosAgentRequest]]
+    client: Optional[str] = None
+    host: Optional[EquosSessionHost] = None
+    agent: Optional[Union[EquosResourceId, CreateEquosAgentRequest]] = None
     avatar: Union[EquosResourceId, CreateEquosAvatarRequest]
-    remoteAgentConnectingIdentity: Optional[EquosParticipantIdentity]
-    consumerIdentity: Optional[EquosParticipantIdentity]
+    remoteAgentConnectingIdentity: Optional[EquosParticipantIdentity] = None
+    consumerIdentity: Optional[EquosParticipantIdentity] = None
 
 
 class EquosSession(BaseModel):
@@ -45,23 +40,23 @@ class EquosSession(BaseModel):
     freemium: bool
     name: str
     provider: str
-    client: Optional[str]
+    client: Optional[str] = None
     status: str
     host: EquosServerUrl
     avatarId: str
     avatar: EquosAvatar
-    agentId: Optional[str]
-    agent: Optional[EquosAgent]
+    agentId: Optional[str] = None
+    agent: Optional[EquosAgent] = None
     startedAt: datetime
-    endedAt: Optional[datetime]
+    endedAt: Optional[datetime] = None
     createdAt: datetime
     updatedAt: datetime
 
 
 class CreateEquosSessionResponse(BaseModel):
     session: EquosSession
-    consumerAccessToken: Optional[str]
-    remoteAgentAccessToken: Optional[str]
+    consumerAccessToken: Optional[str] = None
+    remoteAgentAccessToken: Optional[str] = None
 
 
 class ListEquosSessionsResponse(BaseModel):

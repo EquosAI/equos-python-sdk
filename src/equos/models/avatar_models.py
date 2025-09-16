@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import Optional
-from dataclasses import dataclass
 
 from pydantic import BaseModel
 
@@ -8,14 +7,13 @@ from pydantic import BaseModel
 from equos.models.agent_models import CreateEquosAgentRequest, EquosAgent
 
 
-@dataclass
-class CreateEquosAvatarRequest:
+class CreateEquosAvatarRequest(BaseModel):
     identity: str
     name: str
     refImage: str
-    client: Optional[str]
-    agentId: Optional[str]
-    agent: Optional[CreateEquosAgentRequest]
+    client: Optional[str] = None
+    agentId: Optional[str] = None
+    agent: Optional[CreateEquosAgentRequest] = None
 
 
 class EquosAvatar(BaseModel):
@@ -23,13 +21,13 @@ class EquosAvatar(BaseModel):
     organizationId: str
     identity: str
     name: str
-    client: Optional[str]
+    client: Optional[str] = None
     thumbnailUrl: str
     createdAt: datetime
     updatedAt: datetime
 
-    agentId: Optional[str]
-    agent: Optional[EquosAgent]
+    agentId: Optional[str] = None
+    agent: Optional[EquosAgent] = None
 
 
 class ListEquosAvatarsResponse(BaseModel):

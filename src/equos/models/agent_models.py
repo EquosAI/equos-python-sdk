@@ -1,5 +1,4 @@
 from enum import Enum
-from dataclasses import dataclass
 from typing import Optional, Union
 from datetime import datetime
 
@@ -56,11 +55,10 @@ class GeminiAgentConfig(BaseModel):
     voice: GeminiRealtimeVoices
 
 
-@dataclass
-class CreateEquosAgentRequest:
+class CreateEquosAgentRequest(BaseModel):
     instructions: str
     provider: AgentProvider
-    client: Optional[str]
+    client: Optional[str] = None
 
     config: Union[OpenaiAgentConfig, GeminiAgentConfig]
 
@@ -70,7 +68,7 @@ class EquosAgent(BaseModel):
     organizationId: str
     instructions: str
     provider: AgentProvider
-    client: Optional[str]
+    client: Optional[str] = None
     config: Union[OpenaiAgentConfig, GeminiAgentConfig]
     createdAt: datetime
     updatedAt: datetime

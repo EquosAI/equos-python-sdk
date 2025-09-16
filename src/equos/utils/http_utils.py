@@ -22,16 +22,19 @@ class HttpUtils:
     def get(self, path: str) -> object:
         try:
             return requests.get(
-                self.__get_path(path), headers={"x-api-key": self.api_key}
+                self.__get_path(path),
+                headers={"x-api-key": self.api_key, "Content-Type": "application/json"},
             ).json()
 
         except Exception as e:
             raise EquosException(f"EquosError: {e}")
 
-    def post(self, path: str, body: object) -> object:
+    def post(self, path: str, body: str) -> object:
         try:
             return requests.post(
-                self.__get_path(path), headers={"x-api-key": self.api_key}, json=body
+                self.__get_path(path),
+                headers={"x-api-key": self.api_key, "Content-Type": "application/json"},
+                data=body,
             ).json()
 
         except Exception as e:
@@ -40,7 +43,9 @@ class HttpUtils:
     def patch(self, path: str):
         try:
             return requests.patch(
-                self.__get_path(path), headers={"x-api-key": self.api_key}, json={}
+                self.__get_path(path),
+                headers={"x-api-key": self.api_key, "Content-Type": "application/json"},
+                json={},
             ).json()
 
         except Exception as e:

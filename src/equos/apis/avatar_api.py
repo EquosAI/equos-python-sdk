@@ -15,7 +15,7 @@ class EquosAvatarApi:
         self.http = http
 
     def create(self, *, data: CreateEquosAvatarRequest) -> EquosAvatar:
-        res = self.http.post("/avatars", data)
+        res = self.http.post("/avatars", data.model_dump_json(exclude_none=True))
 
         if res is None:
             raise EquosException("Create avatar response is None")

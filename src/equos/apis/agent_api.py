@@ -1,4 +1,5 @@
 from typing import Optional
+
 from equos.utils.http_utils import HttpUtils
 
 from equos.models.error_models import EquosException
@@ -15,7 +16,7 @@ class EquosAgentApi:
         self.http = http
 
     def create(self, *, data: CreateEquosAgentRequest) -> EquosAgent:
-        res = self.http.post("/agents", data)
+        res = self.http.post("/agents", data.model_dump_json(exclude_none=True))
 
         if res is None:
             raise EquosException("Create agent response is None")
