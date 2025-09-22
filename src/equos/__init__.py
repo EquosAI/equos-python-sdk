@@ -1,5 +1,5 @@
 # src/equos/__init__.py
-from .equos import Equos
+from .equos import Equos, EquosOptions
 from .models.agent_models import (
     AgentProvider,
     EquosAgent,
@@ -31,6 +31,7 @@ from .models.session_models import (
 
 __all__ = [
     "Equos",
+    "EquosOptions",
     "EquosAgent",
     "AgentProvider",
     "GeminiAgentConfig",
