@@ -40,12 +40,33 @@ class HttpUtils:
         except Exception as e:
             raise EquosException(f"EquosError: {e}")
 
+    def put(self, path: str, body: str) -> object:
+        try:
+            return requests.put(
+                self.__get_path(path),
+                headers={"x-api-key": self.api_key, "Content-Type": "application/json"},
+                data=body,
+            ).json()
+
+        except Exception as e:
+            raise EquosException(f"EquosError: {e}")
+
     def patch(self, path: str):
         try:
             return requests.patch(
                 self.__get_path(path),
                 headers={"x-api-key": self.api_key, "Content-Type": "application/json"},
                 json={},
+            ).json()
+
+        except Exception as e:
+            raise EquosException(f"EquosError: {e}")
+
+    def delete(self, path: str) -> object:
+        try:
+            return requests.delete(
+                self.__get_path(path),
+                headers={"x-api-key": self.api_key, "Content-Type": "application/json"},
             ).json()
 
         except Exception as e:

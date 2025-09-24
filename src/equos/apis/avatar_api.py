@@ -5,6 +5,7 @@ from equos.models.error_models import EquosException
 
 from equos.models.avatar_models import (
     CreateEquosAvatarRequest,
+    UpdateEquosAvatarRequest,
     EquosAvatar,
     ListEquosAvatarsResponse,
 )
@@ -42,5 +43,23 @@ class EquosAvatarApi:
 
         if res is None:
             return None
+
+        return EquosAvatar.model_validate(res)
+
+    def delete(self, *, id: str) -> Optional[EquosAvatar]:
+        res = self.http.delete(f"/avatars/{id}")
+
+        if res is None:
+            return None
+
+        return EquosAvatar.model_validate(res)
+
+    def update(self, *, data: UpdateEquosAvatarRequest) -> EquosAvatar:
+        res = self.http.put(
+            f"/avatars/{data.id}", data.model_dump_json(exclude_none=True)
+        )
+
+        if res is None:
+            raise EquosException("Update avatar response is None")
 
         return EquosAvatar.model_validate(res)

@@ -39,6 +39,14 @@ class AsyncHttpUtils:
         except Exception as e:
             raise EquosException(f"EquosError: {e}")
 
+    async def put(self, path: str, body: str) -> object:
+        try:
+            response = await self._client.put(self.__get_path(path), content=body)
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            raise EquosException(f"EquosError: {e}")
+
     async def patch(self, path: str) -> object:
         try:
             response = await self._client.patch(self.__get_path(path), json={})
@@ -47,5 +55,10 @@ class AsyncHttpUtils:
         except Exception as e:
             raise EquosException(f"EquosError: {e}")
 
-    async def close(self) -> None:
-        await self._client.aclose()
+    async def delete(self, path: str) -> object:
+        try:
+            response = await self._client.delete(self.__get_path(path))
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            raise EquosException(f"EquosError: {e}")

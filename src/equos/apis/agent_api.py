@@ -6,6 +6,7 @@ from equos.models.error_models import EquosException
 
 from equos.models.agent_models import (
     CreateEquosAgentRequest,
+    UpdateEquosAgentRequest,
     EquosAgent,
     ListEquosAgentsResponse,
 )
@@ -43,5 +44,23 @@ class EquosAgentApi:
 
         if res is None:
             return None
+
+        return EquosAgent.model_validate(res)
+
+    def delete(self, *, id: str) -> Optional[EquosAgent]:
+        res = self.http.delete(f"/agents/{id}")
+
+        if res is None:
+            return None
+
+        return EquosAgent.model_validate(res)
+
+    def update(self, *, data: UpdateEquosAgentRequest) -> EquosAgent:
+        res = self.http.put(
+            f"/agents/{data.id}", data.model_dump_json(exclude_none=True)
+        )
+
+        if res is None:
+            raise EquosException("Update agent response is None")
 
         return EquosAgent.model_validate(res)

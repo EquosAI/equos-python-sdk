@@ -46,28 +46,38 @@ class AgentProvider(Enum):
 
 
 class OpenaiAgentConfig(BaseModel):
+    instructions: str
     model: OpenaiRealtimeModels
     voice: OpenaiRealtimeVoices
 
 
 class GeminiAgentConfig(BaseModel):
+    instructions: str
     model: GeminiRealtimeModels
     voice: GeminiRealtimeVoices
 
 
-class CreateEquosAgentRequest(BaseModel):
-    instructions: str
-    provider: AgentProvider
-    client: Optional[str] = None
+class ElevenlabsAgentConfig(BaseModel):
+    elevenlabsAgentId: str
 
-    config: Union[OpenaiAgentConfig, GeminiAgentConfig]
+
+class CreateEquosAgentRequest(BaseModel):
+    provider: AgentProvider
+    name: Optional[str] = None
+    client: Optional[str] = None
+    config: Union[OpenaiAgentConfig, GeminiAgentConfig, ElevenlabsAgentConfig]
+
+
+class UpdateEquosAgentRequest(CreateEquosAgentRequest):
+    id: str
+    organizationId: str
 
 
 class EquosAgent(BaseModel):
     id: str
     organizationId: str
-    instructions: str
     provider: AgentProvider
+    name: Optional[str] = None
     client: Optional[str] = None
     config: Union[OpenaiAgentConfig, GeminiAgentConfig]
     createdAt: datetime
