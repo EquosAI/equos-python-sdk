@@ -32,6 +32,7 @@ class CreateEquosSessionRequest(BaseModel):
     avatar: Union[EquosResourceId, CreateEquosAvatarRequest]
     remoteAgentConnectingIdentity: Optional[EquosParticipantIdentity] = None
     consumerIdentity: Optional[EquosParticipantIdentity] = None
+    maxDuration: Optional[int] = None
 
 
 class EquosSession(BaseModel):
