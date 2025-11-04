@@ -38,6 +38,7 @@ class GeminiRealtimeVoices(Enum):
     Orus = "Orus"
     Zephyr = "Zephyr"
     Sulafat = "Sulafat"
+    Sadachbia = "Sadachbia"
     Sadaltager = "Sadaltager"
     Vindemiatrix = "Vindemiatrix"
     Zubenelgenubi = "Zubenelgenubi"
