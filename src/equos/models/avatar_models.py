@@ -28,6 +28,7 @@ class EquosAvatar(BaseModel):
     organizationId: str
     identity: str
     name: str
+    description: str
     client: Optional[str] = None
     thumbnailUrl: str
     createdAt: datetime

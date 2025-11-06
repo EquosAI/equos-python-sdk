@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Optional, Union
+from typing import Optional
 from datetime import datetime
 
 from pydantic import BaseModel
@@ -24,8 +24,9 @@ class OpenaiRealtimeVoices(Enum):
 
 
 class GeminiRealtimeModels(Enum):
-    gemini_2_5_flash_exp = "gemini-2.5-flash-exp-native-audio-thinking-dialog"
-    gemini_2_0_flash_exp = "gemini-2.0-flash-exp"
+    gemini_2_5_flash_native_audio_09_2025 = (
+        "gemini-2.5-flash-native-audio-preview-09-2025"
+    )
 
 
 class GeminiRealtimeVoices(Enum):
@@ -67,27 +68,19 @@ class AgentProvider(Enum):
     elevenlabs = "elevenlabs"
 
 
-class OpenaiAgentConfig(BaseModel):
-    instructions: str
-    model: OpenaiRealtimeModels
-    voice: OpenaiRealtimeVoices
-
-
-class GeminiAgentConfig(BaseModel):
-    instructions: str
-    model: GeminiRealtimeModels
-    voice: GeminiRealtimeVoices
-
-
-class ElevenlabsAgentConfig(BaseModel):
-    elevenlabsAgentId: str
-
-
 class CreateEquosAgentRequest(BaseModel):
     provider: AgentProvider
     name: Optional[str] = None
     client: Optional[str] = None
-    config: Union[OpenaiAgentConfig, GeminiAgentConfig, ElevenlabsAgentConfig]
+
+    model: Optional[GeminiRealtimeModels] = None
+    voice: Optional[GeminiRealtimeVoices] = None
+    instructions: Optional[str] = None
+    remoteId: Optional[str] = None
+
+    search: bool = False
+    emotions: bool = False
+    memory: bool = False
 
 
 class UpdateEquosAgentRequest(CreateEquosAgentRequest):
@@ -101,7 +94,15 @@ class EquosAgent(BaseModel):
     provider: AgentProvider
     name: Optional[str] = None
     client: Optional[str] = None
-    config: Union[OpenaiAgentConfig, GeminiAgentConfig]
+
+    model: Optional[GeminiRealtimeModels] = None
+    voice: Optional[GeminiRealtimeVoices] = None
+    instructions: Optional[str] = None
+    remoteId: Optional[str] = None
+
+    search: bool = False
+    emotions: bool = False
+    memory: bool = False
     createdAt: datetime
     updatedAt: datetime
 

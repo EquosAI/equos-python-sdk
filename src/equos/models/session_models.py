@@ -42,14 +42,27 @@ class EquosSession(BaseModel):
     name: str
     provider: str
     client: Optional[str] = None
+
     status: str
+
     host: EquosServerUrl
+
+    additionalCtx: Optional[str] = None
+    templateVars: Optional[dict[str, str]] = None
+
+    remoteAgentIdentity: Optional[str] = None
+
+    maxDuration: Optional[int] = None
+
     avatarId: str
     avatar: EquosAvatar
+
     agentId: Optional[str] = None
     agent: Optional[EquosAgent] = None
+
     startedAt: datetime
     endedAt: Optional[datetime] = None
+
     createdAt: datetime
     updatedAt: datetime
 
