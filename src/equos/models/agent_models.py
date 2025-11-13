@@ -76,6 +76,8 @@ class CreateEquosAgentRequest(BaseModel):
     model: Optional[GeminiRealtimeModels] = None
     voice: Optional[GeminiRealtimeVoices] = None
     instructions: Optional[str] = None
+    greetingMsg: Optional[str] = None
+
     remoteId: Optional[str] = None
 
     search: bool = False
@@ -98,6 +100,8 @@ class EquosAgent(BaseModel):
     model: Optional[GeminiRealtimeModels] = None
     voice: Optional[GeminiRealtimeVoices] = None
     instructions: Optional[str] = None
+    greetingMsg: Optional[str] = None
+
     remoteId: Optional[str] = None
 
     search: bool = False
