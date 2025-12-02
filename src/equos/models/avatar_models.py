@@ -34,7 +34,7 @@ class EquosAvatar(BaseModel):
     createdAt: datetime
     updatedAt: datetime
     agentId: Optional[str] = None
-    agent: Optional[EquosAgent]
+    agent: Optional[EquosAgent] = None
 
 
 class ListEquosAvatarsResponse(BaseModel):
