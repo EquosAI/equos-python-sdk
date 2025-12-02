@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from src.equos.models.agent_models import EquosAgent
+from equos.models.agent_models import EquosAgent
 
 
 class CreateEquosAvatarRequest(BaseModel):
