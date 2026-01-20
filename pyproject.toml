@@ -6,12 +6,15 @@ dependencies = ["requests (>=2.32.5,<3.0.0)", "httpx (>=0.28.1,<0.29.0)", "pydan
 description = "Equos.ai official Python SDK."
 name = "equos"
 readme = "README.md"
-requires-python = ">=3.11"
-version = "1.2.7"
+requires-python = ">=3.11,<4"
+version = "3.0.0"
 
 [tool.poetry]
 include = ["src/equos/py.typed"]
 packages = [{include = "equos", from = "src"}]
+
+[tool.poetry.group.dev.dependencies]
+openapi-python-client = "^0.28.1"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
