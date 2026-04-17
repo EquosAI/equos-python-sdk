@@ -13,7 +13,8 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.equos_conversation_prompt_template_vars_type_0 import EquosConversationPromptTemplateVarsType0
-    from ..models.equos_conversation_transcript_message import EquosConversationTranscriptMessage
+    from ..models.equos_conversation_utterance import EquosConversationUtterance
+    from ..models.equos_timeline_entry import EquosTimelineEntry
 
 
 T = TypeVar("T", bound="EquosConversation")
@@ -26,11 +27,8 @@ class EquosConversation:
         id (str):
         name (str):
         status (EquosConversationStatus):
-        room (str):
-        server_url (str):
         charge (bool):
         charge_by_second (float):
-        charge_unit_count (float):
         max_seconds (float):
         started_at (datetime.datetime):
         created_at (datetime.datetime):
@@ -38,13 +36,16 @@ class EquosConversation:
         character_id (str):
         organization_id (str):
         client (None | str | Unset):
+        room (None | str | Unset):
+        server_url (None | str | Unset):
         remote_agent_name (None | str | Unset):
         remote_agent_identity (None | str | Unset):
         consumer_name (None | str | Unset):
         consumer_identity (None | str | Unset):
         prompt_ctx (None | str | Unset):
         prompt_template_vars (EquosConversationPromptTemplateVarsType0 | None | Unset):
-        transcript (list[EquosConversationTranscriptMessage] | None | Unset):
+        transcript (list[EquosConversationUtterance] | None | Unset):
+        timeline (list[EquosTimelineEntry] | None | Unset):
         joined_at (datetime.datetime | None | Unset):
         ended_at (datetime.datetime | None | Unset):
     """
@@ -52,11 +53,8 @@ class EquosConversation:
     id: str
     name: str
     status: EquosConversationStatus
-    room: str
-    server_url: str
     charge: bool
     charge_by_second: float
-    charge_unit_count: float
     max_seconds: float
     started_at: datetime.datetime
     created_at: datetime.datetime
@@ -64,13 +62,16 @@ class EquosConversation:
     character_id: str
     organization_id: str
     client: None | str | Unset = UNSET
+    room: None | str | Unset = UNSET
+    server_url: None | str | Unset = UNSET
     remote_agent_name: None | str | Unset = UNSET
     remote_agent_identity: None | str | Unset = UNSET
     consumer_name: None | str | Unset = UNSET
     consumer_identity: None | str | Unset = UNSET
     prompt_ctx: None | str | Unset = UNSET
     prompt_template_vars: EquosConversationPromptTemplateVarsType0 | None | Unset = UNSET
-    transcript: list[EquosConversationTranscriptMessage] | None | Unset = UNSET
+    transcript: list[EquosConversationUtterance] | None | Unset = UNSET
+    timeline: list[EquosTimelineEntry] | None | Unset = UNSET
     joined_at: datetime.datetime | None | Unset = UNSET
     ended_at: datetime.datetime | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -84,15 +85,9 @@ class EquosConversation:
 
         status = self.status.value
 
-        room = self.room
-
-        server_url = self.server_url
-
         charge = self.charge
 
         charge_by_second = self.charge_by_second
-
-        charge_unit_count = self.charge_unit_count
 
         max_seconds = self.max_seconds
 
@@ -111,6 +106,18 @@ class EquosConversation:
             client = UNSET
         else:
             client = self.client
+
+        room: None | str | Unset
+        if isinstance(self.room, Unset):
+            room = UNSET
+        else:
+            room = self.room
+
+        server_url: None | str | Unset
+        if isinstance(self.server_url, Unset):
+            server_url = UNSET
+        else:
+            server_url = self.server_url
 
         remote_agent_name: None | str | Unset
         if isinstance(self.remote_agent_name, Unset):
@@ -162,6 +169,18 @@ class EquosConversation:
         else:
             transcript = self.transcript
 
+        timeline: list[dict[str, Any]] | None | Unset
+        if isinstance(self.timeline, Unset):
+            timeline = UNSET
+        elif isinstance(self.timeline, list):
+            timeline = []
+            for timeline_type_0_item_data in self.timeline:
+                timeline_type_0_item = timeline_type_0_item_data.to_dict()
+                timeline.append(timeline_type_0_item)
+
+        else:
+            timeline = self.timeline
+
         joined_at: None | str | Unset
         if isinstance(self.joined_at, Unset):
             joined_at = UNSET
@@ -185,11 +204,8 @@ class EquosConversation:
                 "id": id,
                 "name": name,
                 "status": status,
-                "room": room,
-                "serverUrl": server_url,
                 "charge": charge,
                 "chargeBySecond": charge_by_second,
-                "chargeUnitCount": charge_unit_count,
                 "maxSeconds": max_seconds,
                 "startedAt": started_at,
                 "createdAt": created_at,
@@ -200,6 +216,10 @@ class EquosConversation:
         )
         if client is not UNSET:
             field_dict["client"] = client
+        if room is not UNSET:
+            field_dict["room"] = room
+        if server_url is not UNSET:
+            field_dict["serverUrl"] = server_url
         if remote_agent_name is not UNSET:
             field_dict["remoteAgentName"] = remote_agent_name
         if remote_agent_identity is not UNSET:
@@ -214,6 +234,8 @@ class EquosConversation:
             field_dict["promptTemplateVars"] = prompt_template_vars
         if transcript is not UNSET:
             field_dict["transcript"] = transcript
+        if timeline is not UNSET:
+            field_dict["timeline"] = timeline
         if joined_at is not UNSET:
             field_dict["joinedAt"] = joined_at
         if ended_at is not UNSET:
@@ -224,7 +246,8 @@ class EquosConversation:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.equos_conversation_prompt_template_vars_type_0 import EquosConversationPromptTemplateVarsType0
-        from ..models.equos_conversation_transcript_message import EquosConversationTranscriptMessage
+        from ..models.equos_conversation_utterance import EquosConversationUtterance
+        from ..models.equos_timeline_entry import EquosTimelineEntry
 
         d = dict(src_dict)
         id = d.pop("id")
@@ -233,15 +256,9 @@ class EquosConversation:
 
         status = EquosConversationStatus(d.pop("status"))
 
-        room = d.pop("room")
-
-        server_url = d.pop("serverUrl")
-
         charge = d.pop("charge")
 
         charge_by_second = d.pop("chargeBySecond")
-
-        charge_unit_count = d.pop("chargeUnitCount")
 
         max_seconds = d.pop("maxSeconds")
 
@@ -263,6 +280,24 @@ class EquosConversation:
             return cast(None | str | Unset, data)
 
         client = _parse_client(d.pop("client", UNSET))
+
+        def _parse_room(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        room = _parse_room(d.pop("room", UNSET))
+
+        def _parse_server_url(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        server_url = _parse_server_url(d.pop("serverUrl", UNSET))
 
         def _parse_remote_agent_name(data: object) -> None | str | Unset:
             if data is None:
@@ -326,7 +361,7 @@ class EquosConversation:
 
         prompt_template_vars = _parse_prompt_template_vars(d.pop("promptTemplateVars", UNSET))
 
-        def _parse_transcript(data: object) -> list[EquosConversationTranscriptMessage] | None | Unset:
+        def _parse_transcript(data: object) -> list[EquosConversationUtterance] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -337,16 +372,38 @@ class EquosConversation:
                 transcript_type_0 = []
                 _transcript_type_0 = data
                 for transcript_type_0_item_data in _transcript_type_0:
-                    transcript_type_0_item = EquosConversationTranscriptMessage.from_dict(transcript_type_0_item_data)
+                    transcript_type_0_item = EquosConversationUtterance.from_dict(transcript_type_0_item_data)
 
                     transcript_type_0.append(transcript_type_0_item)
 
                 return transcript_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(list[EquosConversationTranscriptMessage] | None | Unset, data)
+            return cast(list[EquosConversationUtterance] | None | Unset, data)
 
         transcript = _parse_transcript(d.pop("transcript", UNSET))
+
+        def _parse_timeline(data: object) -> list[EquosTimelineEntry] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                timeline_type_0 = []
+                _timeline_type_0 = data
+                for timeline_type_0_item_data in _timeline_type_0:
+                    timeline_type_0_item = EquosTimelineEntry.from_dict(timeline_type_0_item_data)
+
+                    timeline_type_0.append(timeline_type_0_item)
+
+                return timeline_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[EquosTimelineEntry] | None | Unset, data)
+
+        timeline = _parse_timeline(d.pop("timeline", UNSET))
 
         def _parse_joined_at(data: object) -> datetime.datetime | None | Unset:
             if data is None:
@@ -386,11 +443,8 @@ class EquosConversation:
             id=id,
             name=name,
             status=status,
-            room=room,
-            server_url=server_url,
             charge=charge,
             charge_by_second=charge_by_second,
-            charge_unit_count=charge_unit_count,
             max_seconds=max_seconds,
             started_at=started_at,
             created_at=created_at,
@@ -398,6 +452,8 @@ class EquosConversation:
             character_id=character_id,
             organization_id=organization_id,
             client=client,
+            room=room,
+            server_url=server_url,
             remote_agent_name=remote_agent_name,
             remote_agent_identity=remote_agent_identity,
             consumer_name=consumer_name,
@@ -405,6 +461,7 @@ class EquosConversation:
             prompt_ctx=prompt_ctx,
             prompt_template_vars=prompt_template_vars,
             transcript=transcript,
+            timeline=timeline,
             joined_at=joined_at,
             ended_at=ended_at,
         )

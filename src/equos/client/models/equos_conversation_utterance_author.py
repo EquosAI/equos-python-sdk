@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class EquosConversationTranscriptMessageAuthor(str, Enum):
+class EquosConversationUtteranceAuthor(str, Enum):
     CHARACTER = "character"
     USER = "user"
 

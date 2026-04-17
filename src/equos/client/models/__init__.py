@@ -11,6 +11,8 @@ from .create_equos_conversation_request_prompt_template_vars_type_0 import (
 from .create_equos_conversation_response import CreateEquosConversationResponse
 from .create_equos_face_request import CreateEquosFaceRequest
 from .create_equos_face_request_identity import CreateEquosFaceRequestIdentity
+from .create_equos_token_request import CreateEquosTokenRequest
+from .create_equos_token_response import CreateEquosTokenResponse
 from .create_equos_voice_request import CreateEquosVoiceRequest
 from .create_equos_voice_request_identity import CreateEquosVoiceRequestIdentity
 from .create_knowledge_base_request import CreateKnowledgeBaseRequest
@@ -20,8 +22,8 @@ from .equos_conversation import EquosConversation
 from .equos_conversation_host import EquosConversationHost
 from .equos_conversation_prompt_template_vars_type_0 import EquosConversationPromptTemplateVarsType0
 from .equos_conversation_status import EquosConversationStatus
-from .equos_conversation_transcript_message import EquosConversationTranscriptMessage
-from .equos_conversation_transcript_message_author import EquosConversationTranscriptMessageAuthor
+from .equos_conversation_utterance import EquosConversationUtterance
+from .equos_conversation_utterance_author import EquosConversationUtteranceAuthor
 from .equos_conversation_with_character import EquosConversationWithCharacter
 from .equos_conversation_with_character_prompt_template_vars_type_0 import (
     EquosConversationWithCharacterPromptTemplateVarsType0,
@@ -32,6 +34,7 @@ from .equos_face import EquosFace
 from .equos_face_identity import EquosFaceIdentity
 from .equos_knowledge_base import EquosKnowledgeBase
 from .equos_participant_identity import EquosParticipantIdentity
+from .equos_timeline_entry import EquosTimelineEntry
 from .equos_voice import EquosVoice
 from .equos_voice_identity import EquosVoiceIdentity
 from .health_response import HealthResponse
@@ -53,6 +56,8 @@ __all__ = (
     "CreateEquosConversationResponse",
     "CreateEquosFaceRequest",
     "CreateEquosFaceRequestIdentity",
+    "CreateEquosTokenRequest",
+    "CreateEquosTokenResponse",
     "CreateEquosVoiceRequest",
     "CreateEquosVoiceRequestIdentity",
     "CreateKnowledgeBaseRequest",
@@ -62,8 +67,8 @@ __all__ = (
     "EquosConversationHost",
     "EquosConversationPromptTemplateVarsType0",
     "EquosConversationStatus",
-    "EquosConversationTranscriptMessage",
-    "EquosConversationTranscriptMessageAuthor",
+    "EquosConversationUtterance",
+    "EquosConversationUtteranceAuthor",
     "EquosConversationWithCharacter",
     "EquosConversationWithCharacterPromptTemplateVarsType0",
     "EquosConversationWithCharacterStatus",
@@ -72,6 +77,7 @@ __all__ = (
     "EquosFaceIdentity",
     "EquosKnowledgeBase",
     "EquosParticipantIdentity",
+    "EquosTimelineEntry",
     "EquosVoice",
     "EquosVoiceIdentity",
     "HealthResponse",

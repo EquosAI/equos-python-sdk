@@ -4,9 +4,8 @@ This module provides a stable, typed import path for the main client as well as
 convenience re-exports for generated OpenAPI models and shared types.
 """
 
-from .equos import EquosClient, EquosOptions
 from . import models, types
-
+from .equos import EquosClient, EquosOptions
 
 __all__ = [
     "EquosClient",

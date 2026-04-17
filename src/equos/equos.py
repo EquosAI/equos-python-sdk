@@ -1,7 +1,5 @@
 from dataclasses import dataclass
 
-from equos.client.client import AuthenticatedClient
-
 # Import generated API groups
 from equos.client.api.brain import BrainApi
 from equos.client.api.character import CharacterApi
@@ -11,7 +9,7 @@ from equos.client.api.health import HealthApi
 from equos.client.api.knowledge_base import KnowledgeBaseApi
 from equos.client.api.organization import OrganizationApi
 from equos.client.api.voice import VoiceApi
-
+from equos.client.client import AuthenticatedClient
 
 DEFAULT_VERSION = "v3"
 DEFAULT_ENDPOINT = f"https://api.equos.ai/{DEFAULT_VERSION}"

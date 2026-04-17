@@ -8,23 +8,23 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.equos_conversation_transcript_message_author import EquosConversationTranscriptMessageAuthor
+from ..models.equos_conversation_utterance_author import EquosConversationUtteranceAuthor
 
-T = TypeVar("T", bound="EquosConversationTranscriptMessage")
+T = TypeVar("T", bound="EquosConversationUtterance")
 
 
 @_attrs_define
-class EquosConversationTranscriptMessage:
+class EquosConversationUtterance:
     """
     Attributes:
         id (str):
-        author (EquosConversationTranscriptMessageAuthor):
+        author (EquosConversationUtteranceAuthor):
         content (str):
         recorded_at (datetime.datetime):
     """
 
     id: str
-    author: EquosConversationTranscriptMessageAuthor
+    author: EquosConversationUtteranceAuthor
     content: str
     recorded_at: datetime.datetime
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -56,21 +56,21 @@ class EquosConversationTranscriptMessage:
         d = dict(src_dict)
         id = d.pop("id")
 
-        author = EquosConversationTranscriptMessageAuthor(d.pop("author"))
+        author = EquosConversationUtteranceAuthor(d.pop("author"))
 
         content = d.pop("content")
 
         recorded_at = isoparse(d.pop("recordedAt"))
 
-        equos_conversation_transcript_message = cls(
+        equos_conversation_utterance = cls(
             id=id,
             author=author,
             content=content,
             recorded_at=recorded_at,
         )
 
-        equos_conversation_transcript_message.additional_properties = d
-        return equos_conversation_transcript_message
+        equos_conversation_utterance.additional_properties = d
+        return equos_conversation_utterance
 
     @property
     def additional_keys(self) -> list[str]:
