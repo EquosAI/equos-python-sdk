@@ -291,9 +291,7 @@ class KnowledgeBasesApi(_ApiGroup):
         skip: float | Unset = 0.0,
         client_query: str | Unset = UNSET,
     ) -> ListEquosKnowledgeBasesResponse | None:
-        return list_knowledge_bases.sync(
-            client=self._client, take=take, skip=skip, client_query=client_query
-        )
+        return list_knowledge_bases.sync(client=self._client, take=take, skip=skip, client_query=client_query)
 
     async def list_async(
         self,
@@ -302,9 +300,7 @@ class KnowledgeBasesApi(_ApiGroup):
         skip: float | Unset = 0.0,
         client_query: str | Unset = UNSET,
     ) -> ListEquosKnowledgeBasesResponse | None:
-        return await list_knowledge_bases.asyncio(
-            client=self._client, take=take, skip=skip, client_query=client_query
-        )
+        return await list_knowledge_bases.asyncio(client=self._client, take=take, skip=skip, client_query=client_query)
 
     def get(self, id: str) -> EquosKnowledgeBase | None:
         return get_knowledge_base.sync(id=id, client=self._client)
@@ -327,9 +323,7 @@ class KnowledgeBasesApi(_ApiGroup):
     def add_document(self, id: str, body: CreateDocumentRequest) -> CreateDocumentResponse | None:
         return add_document.sync(id=id, client=self._client, body=body)
 
-    async def add_document_async(
-        self, id: str, body: CreateDocumentRequest
-    ) -> CreateDocumentResponse | None:
+    async def add_document_async(self, id: str, body: CreateDocumentRequest) -> CreateDocumentResponse | None:
         return await add_document.asyncio(id=id, client=self._client, body=body)
 
     def index_document(self, id: str, doc: str) -> EquosDocument | None:
