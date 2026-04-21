@@ -3,7 +3,9 @@ import sys
 from pathlib import Path
 
 # API_URL = "http://localhost:3001/docs/v3-json"
-API_URL = "https://develop-api.equos.ai/docs/v3-json"
+# API_URL = "https://develop-api.equos.ai/docs/v3-json"
+API_URL = "https://api.equos.ai/docs/v3-json"
+
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "src/equos"
 
 
